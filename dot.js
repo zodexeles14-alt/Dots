@@ -1,41 +1,70 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Rich dataset mapping details for each specific service index
   const serviceDetails = {
     "01": {
       title: "Website Design & Development",
-      description: "We craft custom, conversion-focused websites engineered for speed, search visibility, and flawless brand representation.",
-      deliverables: ["Custom Headless & Jamstack Architectures", "Core Web Vitals Optimization (100/100 targets)", "CMS Integration (Sanity, Strapi, WordPress)", "Localization & Multi-language Support"],
-      stack: ["Next.js", "TypeScript", "Tailwind CSS", "GraphQL", "Vercel"]
+      description: "Modern, responsive, and ultra-high-performing web architectures engineered to maximize conversions.",
+      deliverables: [
+        "Headless & Jamstack Implementations",
+        "Core Web Vitals Optimization",
+        "CMS Integration & Setup",
+        "Responsive & Accessible UI/UX"
+      ],
+      stack: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel"]
     },
     "02": {
       title: "Web Application Development",
-      description: "Complex, web-based applications designed to automate business operations and deliver SaaS solutions.",
-      deliverables: ["Role-Based Access Control Systems", "Real-time Dashboards & Data Visualization", "Complex Workflow Automation Engine", "Payment Gateway & Subscription Pipelines"],
-      stack: ["React", "Node.js", "PostgreSQL", "Redis", "Docker"]
+      description: "Custom software platforms built to power complex enterprise workflows and high-concurrency users.",
+      deliverables: [
+        "Role-Based Access Control",
+        "Real-time Dashboards",
+        "Workflow Automation",
+        "Third-Party API Integrations"
+      ],
+      stack: ["React", "Node.js", "PostgreSQL", "Docker"]
     },
     "03": {
       title: "Mobile App Development",
-      description: "High-performance iOS and Android applications built natively or cross-platform to capture mobile engagements.",
-      deliverables: ["Offline-First Architecture", "Biometric Authentication Integration", "Push Notification Pipelines", "App Store & Play Store Deployment"],
-      stack: ["React Native", "Flutter", "Swift", "Kotlin", "Firebase"]
+      description: "Native-performance iOS and Android applications optimized for seamless offline-first experiences.",
+      deliverables: [
+        "Cross-Platform Native Builds",
+        "Offline Data Syncing",
+        "Push Notification Pipelines",
+        "App Store Publishing"
+      ],
+      stack: ["React Native", "Flutter", "Firebase"]
     },
     "04": {
       title: "UI/UX Design",
-      description: "Human-centered design systems and interactive interfaces grounded in user research and interaction data.",
-      deliverables: ["Interactive High-Fidelity Prototypes", "Comprehensive Design Systems & Tokens", "Usability Testing & Heatmap Analysis", "Accessibility Compliance Audit (WCAG 2.1 AAA)"],
-      stack: ["Figma", "Rive", "Storybook", "Framer", "Zeroheight"]
+      description: "Data-driven visual identities, interactive prototypes, and accessible interface designs.",
+      deliverables: [
+        "Interactive Prototypes",
+        "Design System Creation",
+        "User Journey Mapping",
+        "Accessibility Compliance"
+      ],
+      stack: ["Figma", "Rive", "Storybook"]
     },
     "05": {
       title: "Backend Systems",
-      description: "Scalable server architectures capable of handling heavy concurrent loads and high-frequency data processing.",
-      deliverables: ["Microservices Orchestration", "High-throughput gRPC & REST APIs", "Database Sharding & Query Optimization", "Event-Driven Message Queues"],
-      stack: ["Go", "Python", "Apache Kafka", "Kubernetes", "AWS"]
+      description: "Distributed backend services, microservices architecture, and ultra-fast REST/gRPC APIs.",
+      deliverables: [
+        "REST & GraphQL API Engine",
+        "Database Architecture & Indexing",
+        "Authentication Systems",
+        "Scalable Microservices"
+      ],
+      stack: ["Java", "C#", "Python", "SQL", "Redis"]
     },
     "06": {
       title: "System Management & Maintenance",
-      description: "Proactive infrastructure monitoring, automated security compliance patching, and site reliability engineering.",
-      deliverables: ["Automated CI/CD Deployment Pipelines", "Zero-downtime Patch Releases", "Log Aggregation & Anomaly Detection", "Disaster Recovery & Backup Automation"],
-      stack: ["Datadog", "Terraform", "Prometheus", "Grafana", "Ansible"]
+      description: "24/7 uptime monitoring, automated patch deployment, and automated infrastructure health checks.",
+      deliverables: [
+        "CI/CD Pipeline Automation",
+        "Uptime Monitoring & Alerts",
+        "Automated Security Audits",
+        "Database Backup Management"
+      ],
+      stack: ["Docker", "GitHub Actions", "Linux", "AWS"]
     }
   };
 
@@ -64,12 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
     drawer.classList.add("active");
     overlay.classList.add("active");
     drawer.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
   };
 
   const closeDrawer = () => {
     drawer.classList.remove("active");
     overlay.classList.remove("active");
     drawer.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
   };
 
   cards.forEach(card => {
@@ -87,7 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  closeBtn.addEventListener("click", closeDrawer);
-  overlay.addEventListener("click", closeDrawer);
+  if (closeBtn) closeBtn.addEventListener("click", closeDrawer);
+  if (overlay) overlay.addEventListener("click", closeDrawer);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && drawer.classList.contains("active")) {
+      closeDrawer();
+    }
+  });
 });
-    
+        
